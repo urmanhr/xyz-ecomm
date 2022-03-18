@@ -8,16 +8,16 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import lombok.Builder;
+import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
 @Table(name = "MARKET_REGION")
-@Getter
-@Setter
-@EqualsAndHashCode()
-@Builder
+@Data
+@NoArgsConstructor
 public class MarketRegion {
 	
 	@Id

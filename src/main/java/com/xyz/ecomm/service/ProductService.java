@@ -12,6 +12,7 @@ import com.xyz.ecomm.dao.ProductQueryBuilder;
 import com.xyz.ecomm.dao.ProductRepository;
 import com.xyz.ecomm.exception.ProductNotfoundException;
 import com.xyz.ecomm.pojo.Product;
+import com.xyz.ecomm.pojo.ProductCart;
 
 @Service
 public class ProductService {
@@ -102,6 +103,12 @@ public class ProductService {
 
 		productRepository.save(product);
 
+	}
+
+	@CacheEvict(allEntries = true, cacheNames = { "getAllProducts", "getCountOfProductsBySupplier", "getProductsBySku",
+			"getProductsBySize", "getProductsByColor", "getProductsByPrice", "getProductsByBrand" })
+	public void buyProduct(ProductCart productcart) {
+		//buy product code
 	}
 
 }

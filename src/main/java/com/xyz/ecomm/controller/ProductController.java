@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.xyz.ecomm.dao.BrandRepository;
 import com.xyz.ecomm.dao.ProductRepository;
 import com.xyz.ecomm.pojo.Product;
+import com.xyz.ecomm.pojo.ProductCart;
 import com.xyz.ecomm.service.ProductService;
 
 @RestController
@@ -71,10 +72,14 @@ public class ProductController {
 
 	@PostMapping(path = "create", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public Product createProduct(@RequestBody Product product) {
-
 		productService.createProduct(product);
 		return product;
-
+	}
+	
+	@PostMapping(path = "buy", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public boolean buyProduct(@RequestBody ProductCart productcart) {
+		productService.buyProduct(productcart);
+		return true;
 	}
 
 }

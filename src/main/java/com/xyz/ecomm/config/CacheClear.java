@@ -1,4 +1,4 @@
-package com.xyz.ecomm.cache;
+package com.xyz.ecomm.config;
 
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.scheduling.annotation.Scheduled;

@@ -18,11 +18,11 @@ public class ProductService {
 
 	@Autowired
 	ProductQueryBuilder productQueryBuilder;
-	
+
 	@Autowired
 	ProductRepository productRepository;
 
-	@Cacheable(value = {"getAllProducts"})
+	@Cacheable(value = { "getAllProducts" })
 	public List<Product> getAllProducts(int page, int count) {
 
 		List<Product> products = productQueryBuilder.getAllProducts(page, count);
@@ -34,7 +34,8 @@ public class ProductService {
 		return products;
 
 	}
-	@Cacheable(value = {"getProductsByBrand"})
+
+	@Cacheable(value = { "getProductsByBrand" })
 	public List<Product> getProductsByBrand(String brand, int page, int count) {
 		List<Product> products = productQueryBuilder.getAllProductsByBrand(brand, page, count);
 
@@ -44,7 +45,8 @@ public class ProductService {
 
 		return products;
 	}
-	@Cacheable(value = {"getProductsByPrice"})
+
+	@Cacheable(value = { "getProductsByPrice" })
 	public List<Product> getProductsByPrice(float price, int page, int count) {
 
 		List<Product> products = productQueryBuilder.getAllProductsByPrice(price, page, count);
@@ -55,7 +57,8 @@ public class ProductService {
 
 		return products;
 	}
-	@Cacheable(value = {"getProductsByColor"})
+
+	@Cacheable(value = { "getProductsByColor" })
 	public List<Product> getProductsByColor(String color, int page, int count) {
 		List<Product> products = productQueryBuilder.getAllProductsByColor(color, page, count);
 
@@ -66,7 +69,7 @@ public class ProductService {
 		return products;
 	}
 
-	@Cacheable(value = {"getProductsBySize"})
+	@Cacheable(value = { "getProductsBySize" })
 	public List<Product> getProductsBySize(String size, int page, int count) {
 		List<Product> products = productQueryBuilder.getAllProductsBySize(size, page, count);
 
@@ -76,7 +79,8 @@ public class ProductService {
 
 		return products;
 	}
-	@Cacheable(value = {"getProductsBySku"})
+
+	@Cacheable(value = { "getProductsBySku" })
 	public List<Product> getProductsBySku(String sku, int page, int count) {
 
 		List<Product> products = productQueryBuilder.getAllProductsBySku(sku, page, count);
@@ -86,16 +90,18 @@ public class ProductService {
 
 		return products;
 	}
-	@Cacheable(value = {"getCountOfProductsBySupplier"})
+
+	@Cacheable(value = { "getCountOfProductsBySupplier" })
 	public long getCountOfProductsBySupplier(String supplier) {
 		return productQueryBuilder.getCountOfProductsBySupplier(supplier);
 	}
-	
-	@CacheEvict(allEntries = true)
+
+	@CacheEvict(allEntries = true, cacheNames = { "getAllProducts", "getCountOfProductsBySupplier", "getProductsBySku",
+			"getProductsBySize", "getProductsByColor", "getProductsByPrice", "getProductsByBrand" })
 	public void createProduct(Product product) {
-		
+
 		productRepository.save(product);
-		
+
 	}
 
 }
